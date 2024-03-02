@@ -20,18 +20,20 @@
         }
 
         .banner {
-            background-color: #F7478B; /* Set banner color */
-            height: 4in; /* Set banner height to 4 inches */
-            position: relative; /* Set position to relative for proper positioning of the banner */
-            overflow: hidden; /* Hide overflow */
-            display: flex; /* Use flexbox for alignment */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-            color: #0D0005; /* Set title color */
-            font-size: 2in; /* Set title size to 2 inches */
-            position: relative; /* Set position to relative */
-            z-index: 1; /* Ensure the text is in front of the image */
-        }
+    background: url('banner.jpg') center bottom no-repeat; /* Add your image URL here */
+    background-size: cover;
+    height: 50vh; /* Set banner height to 50% of the viewport height */
+    position: relative; /* Set position to relative for proper positioning of the banner */
+    overflow: hidden; /* Hide overflow */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    color: #0D0005; /* Set title color */
+    font-size: 10vw; /* Set title size relative to the viewport width */
+    position: relative; /* Set position to relative */
+    z-index: 1; /* Ensure the text is in front of the image */
+}
+
 
         .banner-image {
             position: absolute;
@@ -63,7 +65,7 @@
 
         /* Apply handwriting animation to the title */
         #website-title {
-            font-size: 10vw;
+            font-size: 20vw;
             position: relative; /* Set position to relative for z-index to work */
             animation: handwriting 1s ease-in-out forwards; /* Apply handwriting animation */
         }
