@@ -19,6 +19,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: Impact, sans-serif; /* Set font family to Impact */
+            color: #0D0005; /* Set title color */
+            font-size: 2in; /* Set title size to 2 inches */
+            text-shadow: 0 0 10px white; /* Add white drop shadow */
         }
 
         .banner::before {
@@ -29,17 +33,7 @@
             width: 100%;
             height: 20px; /* Height of the burned and ripped effect */
             background: 
-                linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,1) 100%), /* Burned effect gradient */
-                linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,1) 100%); /* Ripped effect gradient */
-        }
-
-        .banner-content {
-            z-index: 2;
-            color: black; /* Set title color */
-            font-size: 2in; /* Set title size to 2 inches */
-            font-family: Arial, sans-serif;
-            margin-right: -20px; /* Asymmetrical edge to the right */
-            text-shadow: 0 0 10px white; /* Add white drop shadow */
+                linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); /* White gradient */
         }
 
         /* Define handwriting animation */
@@ -52,6 +46,11 @@
                 transform: translateX(0) rotate(0);
                 opacity: 1;
             }
+        }
+
+        /* Apply handwriting animation to the title */
+        #website-title {
+            animation: handwriting 1s ease-in-out forwards;
         }
 
         /* Show the title when the page is loaded */
@@ -69,17 +68,7 @@
 <body>
     <header>
         <div class="banner">
-            <div class="banner-content">
-                <h1 id="website-title">Styled.</h1>
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <h1 id="website-title">Styled.</h1>
         </div>
     </header>
 
