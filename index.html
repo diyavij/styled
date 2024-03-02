@@ -5,37 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styled.</title>
     <style>
-        header {
-            text-align: center;
-            position: relative;
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
         .banner {
             background-color: #F7478B; /* Set banner color */
             height: 4in; /* Set banner height to 4 inches */
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative; /* Set position to relative for proper positioning of the banner */
+            overflow: hidden; /* Hide overflow */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
             font-family: Impact, sans-serif; /* Set font family to Impact */
             color: #0D0005; /* Set title color */
             font-size: 2in; /* Set title size to 2 inches */
             text-shadow: 0 0 10px white; /* Add white drop shadow */
-            position: relative; /* Added position relative */
-            border-bottom: none; /* Remove black border at the bottom */
         }
 
-        .banner::before {
-            content: "";
+        .banner-image {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20px; /* Height of the burned and ripped effect */
-            background: 
-                linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%), /* White gradient */
-                url('burnt.jpg' repeat-x; /* Add your image URL here */
+            height: 20px; /* Height of the image */
+            background: url('burnt.jpg') center bottom no-repeat; /* Add your image URL here */
+            z-index: 1; /* Ensure the image is behind the text */
         }
 
         /* Define handwriting animation */
@@ -53,6 +49,8 @@
         /* Apply handwriting animation to the title */
         #website-title {
             animation: handwriting 1s ease-in-out forwards;
+            position: relative; /* Set position to relative for z-index to work */
+            z-index: 2; /* Ensure the text is in front of the image */
         }
 
         /* Show the title when the page is loaded */
@@ -71,8 +69,10 @@
     <header>
         <div class="banner">
             <h1 id="website-title">Styled.</h1>
+            <div class="banner-image"></div> <!-- Image div -->
         </div>
     </header>
+
 
 
 
