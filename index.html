@@ -17,23 +17,26 @@
             overflow: hidden;
         }
 
-        .burn-effect {
+        .banner::after {
+            content: "";
             position: absolute;
             bottom: -20px; /* Adjust the distance of the burn effect */
-            left: 0;
-            width: 100%;
+            left: 50%;
+            width: 100vw;
             height: 50px; /* Height of the burned effect */
-            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5)); /* Burned effect gradient */
+            background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5)); /* Burned effect gradient */
             z-index: 1;
+            transform: translateX(-50%);
         }
 
         .banner-content {
             position: relative;
             z-index: 2;
-            color: #0D0005; /* Set title color */
+            color: white; /* Set title color */
             padding-top: 50px; /* Adjust padding to align content below the burned effect */
             font-size: 2in; /* Set title size to 2 inches */
             font-family: Arial, sans-serif;
+            margin-right: -20px; /* Asymmetrical edge to the right */
         }
 
         /* Define handwriting animation */
@@ -63,7 +66,6 @@
 <body>
     <header>
         <div class="banner">
-            <div class="burn-effect"></div>
             <div class="banner-content">
                 <h1 id="website-title">Styled.</h1>
                 <nav>
@@ -77,6 +79,7 @@
             </div>
         </div>
     </header>
+
 
 
 
