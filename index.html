@@ -7,16 +7,33 @@
     <style>
         header {
             text-align: center;
+            position: relative;
         }
 
-        #website-title {
-            margin: 0; /* Remove default margin */
-            color: #0D0005; /* Set color to a different color, you can use hex, rgb, or color name */
-            font-family: Impact, sans-serif; /* Set font-family to Impact (sans-serif) */
-            font-size: 2in;
-            font-weight: bold; /* Set font weight to bold */
-            animation: handwriting 4s infinite alternate; /* Apply handwriting animation */
-            display: none; /* Initially hide the title */
+        .banner {
+            background-color: #F7478B; /* Set banner color */
+            height: 200px; /* Adjust height as needed */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .burn-effect {
+            position: absolute;
+            bottom: -20px; /* Adjust the distance of the burn effect */
+            left: 0;
+            width: 100%;
+            height: 50px; /* Height of the burned effect */
+            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5)); /* Burned effect gradient */
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            color: #0D0005; /* Set title color */
+            padding-top: 50px; /* Adjust padding to align content below the burned effect */
+            font-size: 2in; /* Set title size to 2 inches */
+            font-family: Arial, sans-serif;
         }
 
         /* Define handwriting animation */
@@ -45,17 +62,21 @@
 </head>
 <body>
     <header>
-        <h1 id="website-title">Styled.</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="banner">
+            <div class="burn-effect"></div>
+            <div class="banner-content">
+                <h1 id="website-title">Styled.</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
-
 
 
 
