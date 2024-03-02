@@ -11,14 +11,29 @@
 
         #website-title {
             margin: 0; /* Remove default margin */
-            color: #F82087; /* Set color to a different color, you can use hex, rgb, or color name */
-            font-family: 'Excalibur Nouveau', cursive; /* Set font-family to Excalibur Nouveau */
+            color: #0D0005; /* Set color to a different color, you can use hex, rgb, or color name */
+            font-family: Impact, sans-serif; /* Set font-family to Impact (sans-serif) */
+            font-size: 2in;
+            font-weight: bold; /* Set font weight to bold */
+            animation: handwriting 4s infinite alternate; /* Apply handwriting animation */
             display: none; /* Initially hide the title */
+        }
+
+        /* Define handwriting animation */
+        @keyframes handwriting {
+            from {
+                transform: translateX(-20px) rotate(-3deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) rotate(0);
+                opacity: 1;
+            }
         }
 
         /* Show the title when the page is loaded */
         body.loaded #website-title {
-            display: block; /* Show the title */
+            display: inline-block; /* Show the title */
         }
     </style>
     <script>
@@ -40,6 +55,8 @@
             </ul>
         </nav>
     </header>
+
+
 
 
     <main>
