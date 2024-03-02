@@ -12,6 +12,13 @@
             background-color: #FA81B0; /* pink */
         }
 
+        .container {
+            max-width: 100%; /* Set maximum width to 100% of viewport */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 0 20px; /* Add some padding to the sides */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
         .banner {
             background-color: #F7478B; /* Set banner color */
             height: 4in; /* Set banner height to 4 inches */
@@ -22,29 +29,24 @@
             align-items: center; /* Center content vertically */
             color: #0D0005; /* Set title color */
             font-size: 2in; /* Set title size to 2 inches */
-            text-shadow: 0 0 10px white; /* Add white drop shadow */
             position: relative; /* Set position to relative */
             z-index: 1; /* Ensure the text is in front of the image */
         }
 
         .banner-image {
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
             height: 100px; /* Height of the image */
             background: url('burnt.jpg') center bottom no-repeat; /* Add your image URL here */
-            z-index: 0; /* Ensure the image is behind the text */
+            background-size: cover;
+            z-index: -1; /* Ensure the image is behind the text */
         }
 
         section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            padding: 20px;
         }
 
         /* Define handwriting animation */
@@ -78,42 +80,39 @@
     </script>
 </head>
 <body>
-    <header>
-        <div class="banner">
-            <h1 id="website-title">Styled.</h1>
-            <div class="banner-image"></div> <!-- Image div -->
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <div class="banner">
+                <h1 id="website-title">Styled.</h1>
+                <div class="banner-image"></div> <!-- Image div -->
+            </div>
+        </header>
 
+        <main>
+            <section id="home">
+                <h2>Welcome to Our Website</h2>
+                <p>This is the homepage content.</p>
+            </section>
 
+            <section id="about">
+                <h2>About Us</h2>
+                <p>About us content goes here.</p>
+            </section>
 
+            <section id="services">
+                <h2>Our Services</h2>
+                <p>Details about services offered.</p>
+            </section>
 
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <p>Contact information and form.</p>
+            </section>
+        </main>
 
-
-    <main>
-        <section id="home">
-            <h2>Welcome to Our Website</h2>
-            <p>This is the homepage content.</p>
-        </section>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>About us content goes here.</p>
-        </section>
-
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>Details about services offered.</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Contact information and form.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
