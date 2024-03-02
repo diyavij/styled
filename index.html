@@ -6,10 +6,10 @@
     <title>Styled.</title>
     <style>
         body {
-      font-family: 'Georgia', serif;
-      margin: 0;
-      padding: 0;
-      background-color: #FA81B0; /* pink */
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FA81B0; /* pink */
         }
 
         .banner {
@@ -20,7 +20,6 @@
             display: flex; /* Use flexbox for alignment */
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
-            font-family: Impact, sans-serif; /* Set font family to Impact */
             color: #0D0005; /* Set title color */
             font-size: 2in; /* Set title size to 2 inches */
             text-shadow: 0 0 10px white; /* Add white drop shadow */
@@ -33,18 +32,19 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20px; /* Height of the image */
+            height: 100px; /* Height of the image */
             background: url('burnt.jpg') center bottom no-repeat; /* Add your image URL here */
             z-index: 0; /* Ensure the image is behind the text */
         }
+
         section {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
-      margin-bottom: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         /* Define handwriting animation */
@@ -62,7 +62,6 @@
         /* Apply handwriting animation to the title */
         #website-title {
             position: relative; /* Set position to relative for z-index to work */
-            z-index: 2; /* Ensure the text is in front of the image */
             animation: handwriting 1s ease-in-out forwards; /* Apply handwriting animation */
         }
 
@@ -82,10 +81,9 @@
     <header>
         <div class="banner">
             <h1 id="website-title">Styled.</h1>
+            <div class="banner-image"></div> <!-- Image div -->
         </div>
     </header>
-    <div class="banner-image"></div> <!-- Image div -->
-
 
 
 
