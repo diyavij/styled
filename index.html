@@ -15,7 +15,6 @@
             height: 4in; /* Set banner height to 4 inches */
             position: relative;
             overflow: hidden;
-            border-bottom: 10px solid #000; /* Border to simulate burned effect */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,6 +22,8 @@
             color: #0D0005; /* Set title color */
             font-size: 2in; /* Set title size to 2 inches */
             text-shadow: 0 0 10px white; /* Add white drop shadow */
+            position: relative; /* Added position relative */
+            border-bottom: none; /* Remove black border at the bottom */
         }
 
         .banner::before {
@@ -33,7 +34,8 @@
             width: 100%;
             height: 20px; /* Height of the burned and ripped effect */
             background: 
-                linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); /* White gradient */
+                linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%), /* White gradient */
+                url('burnt.jpg' repeat-x; /* Add your image URL here */
         }
 
         /* Define handwriting animation */
