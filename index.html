@@ -64,6 +64,7 @@
 
         .right-section {
             background: url('taped.png') center center no-repeat;
+            background-size: contain;
             position: absolute;
             right: 0;
             height: 50vh;
@@ -110,7 +111,14 @@
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: auto; /* Push the footer to the bottom */
+            background-color: #D7647C; /* White background */
+            padding: 20px; /* Add padding */
+            width: 100%; /* Full width */
+            position: absolute; /* Absolute position */
+            bottom: 0; /* Align to the bottom */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
         }
     </style>
     <script>
