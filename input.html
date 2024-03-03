@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styled.</title>
+    
     <style>
         body {
             font-family: Impact, sans-serif;
@@ -160,6 +161,27 @@
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
         });
+        function selectOption(option) {
+            document.getElementById("selectedOption").textContent = option;
+        }
+        function storeData(option) {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the URL to send the request to
+            var url = '/store-data';
+
+            // Prepare the data to be sent
+            var data = 'option=' + encodeURIComponent(option);
+
+            // Open a POST request to the server
+            xhr.open('POST', url, true);
+
+            // Set the Content-Type header for the request
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Send the request with the data
+            xhr.send(data);
     </script>
 </head>
 <body>
@@ -172,10 +194,22 @@
         </header>
 
         <main>
-            
-                
-    
-        </main>
+    <section id="questions">
+        <h2>Questions</h2>
+        <div id="options">
+            <button onclick="selectOption('Skater')">Option 1</button>
+            <button onclick="selectOption('Grunge')">Option 2</button>
+            <button onclick="selectOption('Preppy')">Option 3</button>
+            <button onclick="selectOption('Basic')">Option 4</button>
+            <button onclick="selectOption('Coquette')">Option 5</button>
+            <button onclick="selectOption('Hippie')">Option 6</button>
+            <button onclick="selectOption('Goth')">Option 7</button>
+            <button onclick="selectOption('Athletic')">Option 8</button>
+        </div>
+        <p>Selected option: <span id="selectedOption"></span></p>
+    </section>
+</main>
+
 
         <footer>
             <p>&copy; 2024 Your Website. All rights reserved.</p>
