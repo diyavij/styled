@@ -52,6 +52,17 @@
     margin-top: 40px; /* Adjust this value as needed */
         }
 
+        .left-section {
+    position: absolute;
+    left: 0;
+    height: 70vh;
+        }
+
+        main {
+    position: relative; /* Needed for absolute positioning of .left-section */
+    margin-left: 200px; /* Adjust the margin to create space for the left section */
+        }
+
 
 
 
@@ -78,6 +89,10 @@
         body.loaded #website-title {
             display: inline-block; /* Show the title */
         }
+
+        h2 {
+      color: #4F3115; /* brown  */
+        }
     </style>
     <script>
         // Add a class to the body when the page is loaded
@@ -96,7 +111,7 @@
         </header>
 
         <main>
-            <section id="home">
+            <section id="home" class="left-section">
                 <h2>Welcome to Our Website</h2>
                 <p>This is the homepage content.</p>
             </section>
