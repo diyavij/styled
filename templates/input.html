@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,25 +45,22 @@
             margin-top: 40px; /* Add margin to create space between banner and sections */
         }
 
-        .column {
-    flex: 1; /* Each column takes up equal space */
-    padding: 20px; /* Add padding for spacing */
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
-    border-radius: 8px; /* Add rounded corners */
-    margin: 0 10px; /* Add margin between columns */
-}
+        .left-column {
+            width: calc(50% - 20px);
+        }
 
-        
+        .right-column {
+            width: calc(50% - 20px);
+        }
 
         section {
-            background: url('unnamed.jpg') center bottom no-repeat;
-            background-size: cover;
-            height: 200vh; /* Set section height to 50% of the viewport height */
+            background: #D7647C;
+            background-size: contain;
+            height: 50vh; /* Set section height to 50% of the viewport height */
             position: relative;
             overflow: hidden;
             display: flex; /* Use flexbox for alignment */
-            justify-content: flex-start; /* Center content horizontally */
+            justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
             flex-direction: column; /* Stack text elements vertically */
         }
@@ -104,19 +101,17 @@
             display: inline-block; /* Show the title */
         }
 
+        /* Increase the size of the buttons */
         button {
             padding: 10px 20px; /* Adjust padding to increase button size */
             font-size: 16px; /* Increase font size for better readability */
             font-family: impact, sans-serif;
         }
 
-        
-
 
         h2, h3 {
             color: #4F3115; /* Set title color */
             text-align: center; /* Center align text */
-            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
         }
 
         p {
@@ -168,44 +163,20 @@
         body.loaded footer {
             bottom: 0;
         }
-        .section {
-    position: relative; /* Ensure relative positioning */
-}
-
-#new-section {
-    position: absolute; /* Position the new section absolutely */
-    top: 150px; /* Align to the top of the existing section */
-    left: 0; /* Align to the left of the existing section */
-    width: 100%; /* Full width of the parent container */
-    z-index: 1; /* Ensure the new section is on top of the existing one */
-}
     </style>
-    <script>
-        // Add a class to the body when the page is loaded
-        window.addEventListener('load', function() {
-            document.body.classList.add('loaded');
-        });
+       <script>
         function selectOption(option) {
-            document.getElementById("selectedOption").textContent = option;
-        }
-        function storeData(option) {
-            // Create a new XMLHttpRequest object
+        //option 
+        //get all image names from images2 folder
+        // filter all image according to option
+        // select randomly from that.
+        // create a dynamic element for all 4 images
             var xhr = new XMLHttpRequest();
-
-            // Define the URL to send the request to
-            var url = '/store-data';
-
-            // Prepare the data to be sent
-            var data = 'option=' + encodeURIComponent(option);
-
-            // Open a POST request to the server
-            xhr.open('POST', url, true);
-
-            // Set the Content-Type header for the request
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            // Send the request with the data
-            xhr.send(data);
+            xhr.open("POST", "/process_option", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify({ option: option }));
+            window.location.href = "/output";
+        }
     </script>
 </head>
 <body>
@@ -213,55 +184,45 @@
         <header>
             <div class="banner">
                 <h1 id="website-title">Styled.</h1>
-                <div class="banner-image"></div> <!-- Image div -->
+                <div class="banner-image"></div>
             </div>
         </header>
 
         <main>
-            <section id="outfit">
-                <h2>Here is your finished outfit based on the style you chose!</h2>
-                <div class="images">
-                    {% for image in images %}
-                        <img src="{{ url_for('static', filename='sample1/' + image) }}" alt="Outfit Image">
-                    {% endfor %}
+            <section id="questions">
+                <h2>What style are you feeling today?</h2>
+                <div id="options">
+                    <button onclick="selectOption('s')">Skater</button>
+                    <button onclick="selectOption('g')">Grunge</button>
+                    <button onclick="selectOption('p')">Preppy</button>
+                    <button onclick="selectOption('r')">Artsy</button>
+                    <button onclick="selectOption('c')">Coquette</button>
+                    <button onclick="selectOption('h')">Hippie</button>
+                    <button onclick="selectOption('o')">Goth</button>
+                    <button onclick="selectOption('a')">Athletic</button>
                 </div>
-                <button onclick="window.location.href='/input.html';">New Style?</button>
+                <p>Select your style!<span id="selectedOption"></span></p>
             </section>
-
-    <section id="new-section" class="section">
-    <div class="columns">
-        <div class="column">Column 1 content</div>
-        <div class="column">Column 2 content</div>
-        <div class="column">Column 3 content</div>
-        <div class="column">Column 4 content</div>
-    </div>
-    </section>
-
-            
-</main>
-
+        </main>
 
         <footer>
             <p>&copy; 2024 Your Website. All rights reserved.</p>
         </footer>
     </div>
 
-    <!-- Script to toggle footer visibility on scroll -->
-<script>
-    window.addEventListener('scroll', function() {
-        var footer = document.querySelector('footer');
-        var scrollPosition = window.scrollY;
-        var windowSize = window.innerHeight;
-        var bodyHeight = document.body.offsetHeight;
-        var footerPosition = bodyHeight - windowSize;
-        if (scrollPosition >= footerPosition) {
-            footer.classList.add('visible');
-        } else {
-            footer.classList.remove('visible');
-        }
-
-    });
-</script>
-
+    <script>
+        window.addEventListener('scroll', function() {
+            var footer = document.querySelector('footer');
+            var scrollPosition = window.scrollY;
+            var windowSize = window.innerHeight;
+            var bodyHeight = document.body.offsetHeight;
+            var footerPosition = bodyHeight - windowSize;
+            if (scrollPosition >= footerPosition) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>

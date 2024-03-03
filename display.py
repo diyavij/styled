@@ -4,18 +4,8 @@ import numpy as np
 import random
 import shutil
 from flask import Flask, request, jsonify
-app = Flask(__name__)
 
-def delete_previous_sample_folder():
-    folder_path = "sample1"
-    try:
-        if os.path.exists(folder_path):
-            shutil.rmtree(folder_path)
-            print(f"Deleted previous {folder_path} folder")
-    except Exception as e:
-        print(f"Error deleting {folder_path} folder: {e}")
 
-delete_previous_sample_folder()
 
 
 def random_select_images(folder, identifier, num_images):
@@ -57,7 +47,7 @@ def main(option):
     print("start main")
     try:
         image_folder = 'C:/Users/vijdi/OneDrive/Desktop/CSProjects/athenahacks24/backcode/images2/'
-        save_folder = 'C:/Users/vijdi/OneDrive/Desktop/CSProjects/athenahacks24/backcode/sample1/'
+        save_folder = 'C:/Users/vijdi/OneDrive/Desktop/CSProjects/athenahacks24/backcode/static/sample1/'
 
         if not os.path.exists(save_folder):
             os.makedirs(save_folder)
@@ -84,20 +74,4 @@ def main(option):
     except Exception as e:
         print("An error occurred:", e)
 
-@app.route('/process_option', methods=['POST'])
-def process_option():
-    option = request.json['option']
-
-    try:
-        delete_previous_sample_folder()
-        
-        # Call the main function with the selected option
-        main(option)
-
-        return jsonify({'success': True})
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
-
-if __name__ == '__main__':
-    app.run(debug=True)
 

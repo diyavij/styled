@@ -1,10 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styled.</title>
-    
     <style>
         body {
             font-family: Impact, sans-serif;
@@ -54,7 +53,6 @@
         }
 
         section {
-            background: #D7647C;
             background-size: contain;
             height: 50vh; /* Set section height to 50% of the viewport height */
             position: relative;
@@ -70,7 +68,28 @@
             margin-top: 40px; /* Adjust this value as needed */
         }
 
-        
+        .left-section {
+            background: #D7647C; /* Add your image URL here */
+            background-size: contain;
+            height: 30vh;
+        }
+        .contact-section {
+            background: #D7647C; /* Add your image URL here */
+            background-size: contain;
+            height: 100vh;
+        }
+
+        .right-section {
+            background: url('taped.png') center center no-repeat;
+            background-size: 120%; /* Increase the size of the background image */
+            /* Other styles... */
+        }
+
+        button {
+            padding: 10px 20px; /* Adjust padding to increase button size */
+            font-size: 16px; /* Increase font size for better readability */
+            font-family: impact, sans-serif;
+        }
 
 
         main {
@@ -101,14 +120,6 @@
             display: inline-block; /* Show the title */
         }
 
-        /* Increase the size of the buttons */
-        button {
-            padding: 10px 20px; /* Adjust padding to increase button size */
-            font-size: 16px; /* Increase font size for better readability */
-            font-family: impact, sans-serif;
-        }
-
-
         h2, h3 {
             color: #4F3115; /* Set title color */
             text-align: center; /* Center align text */
@@ -117,7 +128,7 @@
         p {
             margin-top: 10px; /* Add top margin */
             text-align: center; /* Center align text */
-            font-size: 15px
+            font-size: 14px
         }
         ul {
               list-style-type: none;
@@ -149,7 +160,25 @@
             right: 0;
             transition: bottom 0.3s ease; /* Smooth transition effect */
         }
-        
+            
+        .contact-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.badge-container {
+    display: inline-block; /* Display badges side by side */
+}
+
+/* Adjust the size and layout of LinkedIn badges */
+.badge-base {
+    width: 0.5in; /* Set the width of each badge */
+    height: 0.5in; /* Set the height of each badge */
+    margin-right: 10px; /* Add some space between badges */
+}
+
 
 
 
@@ -164,18 +193,11 @@
             bottom: 0;
         }
     </style>
-       <script>
-        function selectOption(option) {
-        //option 
-        //get all image names from images2 folder
-        // filter all image according to option
-        // select randomly from that.
-        // create a dynamic element for all 4 images
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/process_option", true);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify({ option: option }));
-        }
+    <script>
+        // Add a class to the body when the page is loaded
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
     </script>
 </head>
 <body>
@@ -183,45 +205,72 @@
         <header>
             <div class="banner">
                 <h1 id="website-title">Styled.</h1>
-                <div class="banner-image"></div>
+                <div class="banner-image"></div> <!-- Image div -->
             </div>
         </header>
 
         <main>
-            <section id="questions">
-                <h2>What style are you feeling today?</h2>
-                <div id="options">
-                    <button onclick="selectOption('s')">Skater</button>
-                    <button onclick="selectOption('g')">Grunge</button>
-                    <button onclick="selectOption('p')">Preppy</button>
-                    <button onclick="selectOption('r')">Artsy</button>
-                    <button onclick="selectOption('c')">Coquette</button>
-                    <button onclick="selectOption('h')">Hippie</button>
-                    <button onclick="selectOption('o')">Goth</button>
-                    <button onclick="selectOption('a')">Athletic</button>
-                </div>
-                <p>Select your style!<span id="selectedOption"></span></p>
+    <div class="columns">
+        <div class="left-column">
+            <section id="home" class="left-section">
+                <h2>Welcome to Our Website</h2>
+                <p>This is the homepage content.</p>
             </section>
-        </main>
+            <section id="output" class="left-section">
+                <h2>Let's pick an outfit!</h2>
+                <p>Click the button below to find your fit</p>
+                <button onclick="window.location.href='/input';">Your Style?</button>
+            </section>
+            <section id="contact" class="contact-section">
+                <h3>Contact Us</h3>
+                <div class="contact-content">
+                    <div class="badge-container">
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="small" data-theme="light" data-type="VERTICAL" data-vanity="sofia-kruse-331510262" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/sofia-kruse-331510262?trk=profile-badge">Sofia Kruse</a></div>
+                    </div>
+                    <div class="badge-container">
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="small" data-theme="light" data-type="VERTICAL" data-vanity="diya-vij-916a30167" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/diya-vij-916a30167?trk=profile-badge">Diya Vij</a></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="right-column">
+            <section id="about" class="right-section">
+                <h3>Here's the thing,</h3>
+                <p>Every girl likes to feel her best. That's where we come in.</p>
+            </section>
+            <section id="services" class="right-section">
+                <h3>Don't worry your pretty head</h3>
+                <p>Planning an outfit in a quick situation can be difficult...good thing we're here to help!</p>
+                <p>Look to the left to find your perfect fit! Just let us know your style.</p>
+            </section>
+        </div>
+    </div>
+</main>
+
 
         <footer>
             <p>&copy; 2024 Your Website. All rights reserved.</p>
         </footer>
     </div>
 
-    <script>
-        window.addEventListener('scroll', function() {
-            var footer = document.querySelector('footer');
-            var scrollPosition = window.scrollY;
-            var windowSize = window.innerHeight;
-            var bodyHeight = document.body.offsetHeight;
-            var footerPosition = bodyHeight - windowSize;
-            if (scrollPosition >= footerPosition) {
-                footer.classList.add('visible');
-            } else {
-                footer.classList.remove('visible');
-            }
-        });
-    </script>
+    <!-- Script to toggle footer visibility on scroll -->
+<script>
+    window.addEventListener('scroll', function() {
+        var footer = document.querySelector('footer');
+        var scrollPosition = window.scrollY;
+        var windowSize = window.innerHeight;
+        var bodyHeight = document.body.offsetHeight;
+        var footerPosition = bodyHeight - windowSize;
+        if (scrollPosition >= footerPosition) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+
+    });
+</script>
+
 </body>
 </html>
