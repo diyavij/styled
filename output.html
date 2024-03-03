@@ -218,13 +218,15 @@
         </header>
 
         <main>
-    <section id="outfit">
-        <h2>Here is your finished outfit based on the style you chose!</h2>
-
-        <button onclick="window.location.href='https://Sofkruse.github.io/Athena-Hacks-2024/input.html';">New Style?</button>
-            
-        
-    </section>
+            <section id="outfit">
+                <h2>Here is your finished outfit based on the style you chose!</h2>
+                <div class="images">
+                    {% for image in images %}
+                        <img src="{{ url_for('static', filename='sample1/' + image) }}" alt="Outfit Image">
+                    {% endfor %}
+                </div>
+                <button onclick="window.location.href='/input.html';">New Style?</button>
+            </section>
 
     <section id="new-section" class="section">
     <div class="columns">

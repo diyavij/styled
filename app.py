@@ -1,10 +1,10 @@
 import os
-import cv2
-import numpy as np
-import random
-import shutil
 from flask import Flask, render_template, request, jsonify
 import display
+import os
+import shutil
+import cv2
+
 
 app = Flask(__name__)
 
