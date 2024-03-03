@@ -164,43 +164,18 @@
             bottom: 0;
         }
     </style>
-    <script>
-        // Add a class to the body when the page is loaded
-        window.addEventListener('load', function() {
-            document.body.classList.add('loaded');
-        });
+       <script>
         function selectOption(option) {
-        // Write the selected option to a CSV file
-        const selectedStyle = option; // Assuming option is the style identifier
-
-        // Create a new XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-
-        // Define the URL to send the request to
-        var url = '/store-data';
-
-        // Prepare the data to be sent
-        var data = 'option=' + encodeURIComponent(selectedStyle);
-
-        // Open a POST request to the server
-        xhr.open('POST', url, true);
-
-        // Set the Content-Type header for the request
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // Send the request with the data
-        xhr.send(data);
-
-        // Open a new page in the same tab
-        window.open('https://Sofkruse.github.io/Athena-Hacks-2024/output.html', '_self');
-    }
-
-    // Add click event listeners to the buttons
-    document.querySelectorAll('#options button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            selectOption(button.textContent); // Pass the button text (style) as the selected option
-        });
-    });
+        //option 
+        //get all image names from images2 folder
+        // filter all image according to option
+        // select randomly from that.
+        // create a dynamic element for all 4 images
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/process_option", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify({ option: option }));
+        }
     </script>
 </head>
 <body>
@@ -208,50 +183,45 @@
         <header>
             <div class="banner">
                 <h1 id="website-title">Styled.</h1>
-                <div class="banner-image"></div> <!-- Image div -->
+                <div class="banner-image"></div>
             </div>
         </header>
 
         <main>
-    <section id="questions">
-        <h2>What style are you feeling today?</h2>
-        <div id="options">
-            <button onclick="selectOption('s')">Skater</button>
-            <button onclick="selectOption('g')">Grunge</button>
-            <button onclick="selectOption('p')">Preppy</button>
-            <button onclick="selectOption('r')">Artsy</button>
-            <button onclick="selectOption('c')">Coquette</button>
-            <button onclick="selectOption('h')">Hippie</button>
-            <button onclick="selectOption('o')">Goth</button>
-            <button onclick="selectOption('a')">Athletic</button>
-        </div>
-        <p>Select your style!<span id="selectedOption"></span></p>
-    </section>
-</main>
-
+            <section id="questions">
+                <h2>What style are you feeling today?</h2>
+                <div id="options">
+                    <button onclick="selectOption('s')">Skater</button>
+                    <button onclick="selectOption('g')">Grunge</button>
+                    <button onclick="selectOption('p')">Preppy</button>
+                    <button onclick="selectOption('r')">Artsy</button>
+                    <button onclick="selectOption('c')">Coquette</button>
+                    <button onclick="selectOption('h')">Hippie</button>
+                    <button onclick="selectOption('o')">Goth</button>
+                    <button onclick="selectOption('a')">Athletic</button>
+                </div>
+                <p>Select your style!<span id="selectedOption"></span></p>
+            </section>
+        </main>
 
         <footer>
             <p>&copy; 2024 Your Website. All rights reserved.</p>
         </footer>
     </div>
 
-    <!-- Script to toggle footer visibility on scroll -->
-<script>
-    window.addEventListener('scroll', function() {
-        var footer = document.querySelector('footer');
-        var scrollPosition = window.scrollY;
-        var windowSize = window.innerHeight;
-        var bodyHeight = document.body.offsetHeight;
-        var footerPosition = bodyHeight - windowSize;
-        if (scrollPosition >= footerPosition) {
-            footer.classList.add('visible');
-        } else {
-            footer.classList.remove('visible');
-        }
-
-    });
-</script>
-
+    <script>
+        window.addEventListener('scroll', function() {
+            var footer = document.querySelector('footer');
+            var scrollPosition = window.scrollY;
+            var windowSize = window.innerHeight;
+            var bodyHeight = document.body.offsetHeight;
+            var footerPosition = bodyHeight - windowSize;
+            if (scrollPosition >= footerPosition) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
-

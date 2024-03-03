@@ -2,12 +2,25 @@ import os
 import cv2
 import numpy as np
 import random
+import shutil
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+def delete_previous_sample_folder():
+    folder_path = "sample1"
+    try:
+        if os.path.exists(folder_path):
+            shutil.rmtree(folder_path)
+            print(f"Deleted previous {folder_path} folder")
+    except Exception as e:
+        print(f"Error deleting {folder_path} folder: {e}")
+
+delete_previous_sample_folder()
+
 
 def random_select_images(folder, identifier, num_images):
     images = os.listdir(folder)
-    # Filter images based on the identifier
     selected_images = [img for img in images if img.startswith(identifier)]
-    # Randomly select specified number of images
     selected_images = random.sample(selected_images, num_images)
     return selected_images
 
@@ -27,52 +40,43 @@ def apply_paper_texture(image, texture_path, alpha=0.2):  # Adjusted alpha value
     if texture is None:
         raise ValueError("Failed to load texture image")
 
-    # Resize the texture to match the input image dimensions
     texture_resized = cv2.resize(texture[..., :3], (image.shape[1], image.shape[0]))
 
-    # Blend the texture with the original image using soft light blending mode
     soft_light_blend = cv2.addWeighted(image, 1 - alpha, texture_resized, alpha, 0)
 
     return soft_light_blend
 
 def enhance_colors(image, contrast=1.7, saturation=1.7):
-    # Convert image to HSV color space
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    # Apply contrast adjustment
     hsv[..., 1] = np.clip(contrast * hsv[..., 1], 0, 255)
-    # Apply saturation adjustment
     hsv[..., 2] = np.clip(saturation * hsv[..., 2], 0, 255)
-    # Convert back to BGR color space
     enhanced = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
     return enhanced
 
-def main():
+def main(option):  
     print("start main")
     try:
         image_folder = 'C:/Users/vijdi/OneDrive/Desktop/CSProjects/athenahacks24/backcode/images2/'
         save_folder = 'C:/Users/vijdi/OneDrive/Desktop/CSProjects/athenahacks24/backcode/sample1/'
 
-        # Create save folder if it doesn't exist
         if not os.path.exists(save_folder):
             os.makedirs(save_folder)
 
-        # Randomly select one image for each type
-        selected_tops = random_select_images(image_folder, f'{letter}1', 1)
-        selected_bottoms = random_select_images(image_folder, f'{letter}2', 1)
-        selected_shoes = random_select_images(image_folder, f'{letter}3', 1)
-        selected_accessories = random_select_images(image_folder, f'{letter}4', 1)
+        selected_tops = random_select_images(image_folder, f'{option}1', 1)
+        selected_bottoms = random_select_images(image_folder, f'{option}2', 1)
+        selected_shoes = random_select_images(image_folder, f'{option}3', 1)
+        selected_accessories = random_select_images(image_folder, f'{option}4', 1)
 
         selected_images = selected_tops + selected_bottoms + selected_shoes + selected_accessories
 
-        # Smooth edges and apply paper texture to the selected images
         for img_name in selected_images:
             img_path = os.path.join(image_folder, img_name)
             img = cv2.imread(img_path)
             if img is None:
                 raise ValueError(f"Failed to load image: {img_path}")
             img_smoothed = smooth_edges(img)
-            img_paperized = apply_paper_texture(img_smoothed, 'backcode/paper_texture.jpg', alpha=0.2)  # Adjusted alpha
-            img_enhanced = enhance_colors(img_paperized, contrast=1.5, saturation=1.5)  # Adjust contrast and saturation
+            img_paperized = apply_paper_texture(img_smoothed, 'backcode/paper_texture.jpg', alpha=0.2)  
+            img_enhanced = enhance_colors(img_paperized, contrast=1.5, saturation=1.5)  
             save_path = os.path.join(save_folder, img_name)
             if not cv2.imwrite(save_path, img_enhanced):
                 raise ValueError(f"Failed to write image: {save_path}")
@@ -80,6 +84,20 @@ def main():
     except Exception as e:
         print("An error occurred:", e)
 
-letter = 'o'
+@app.route('/process_option', methods=['POST'])
+def process_option():
+    option = request.json['option']
+
+    try:
+        delete_previous_sample_folder()
+        
+        # Call the main function with the selected option
+        main(option)
+
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
+
