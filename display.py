@@ -22,7 +22,7 @@ def smooth_edges(image):
     result = cv2.bitwise_and(image, image, mask=mask2)
     return result
 
-def apply_paper_texture(image, texture_path, alpha=0.5):
+def apply_paper_texture(image, texture_path, alpha=0.2):  # Adjusted alpha value
     texture = cv2.imread(texture_path, cv2.IMREAD_UNCHANGED)
     if texture is None:
         raise ValueError("Failed to load texture image")
@@ -30,28 +30,12 @@ def apply_paper_texture(image, texture_path, alpha=0.5):
     # Resize the texture to match the input image dimensions
     texture_resized = cv2.resize(texture[..., :3], (image.shape[1], image.shape[0]))
 
-    # Check if the input image has an alpha channel
-    if image.shape[2] == 4:
-        # If the input image has an alpha channel, use it as the mask
-        mask = image[..., 3]
-    else:
-        # If the input image doesn't have an alpha channel, create a mask based on the intensity
-        mask = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        _, mask = cv2.threshold(mask, 1, 255, cv2.THRESH_BINARY)
+    # Blend the texture with the original image using soft light blending mode
+    soft_light_blend = cv2.addWeighted(image, 1 - alpha, texture_resized, alpha, 0)
 
-    # Apply the texture only to non-transparent regions of the input image
-    result = np.zeros_like(image)
-    for c in range(3):
-        result[..., c] = np.where(mask > 0, texture_resized[..., c], image[..., c])
-    if image.shape[2] == 4:
-        result[..., 3] = mask  # Preserve the alpha channel
+    return soft_light_blend
 
-    # Blend the result with the input image based on alpha
-    blended = cv2.addWeighted(image, 1 - alpha, result, alpha, 0)
-
-    return blended
-
-def enhance_colors(image, contrast=1.5, saturation=1.5):
+def enhance_colors(image, contrast=1.7, saturation=1.7):
     # Convert image to HSV color space
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     # Apply contrast adjustment
@@ -73,10 +57,10 @@ def main():
             os.makedirs(save_folder)
 
         # Randomly select one image for each type
-        selected_tops = random_select_images(image_folder, 'h1', 1)
-        selected_bottoms = random_select_images(image_folder, 'h2', 1)
-        selected_shoes = random_select_images(image_folder, 'h3', 1)
-        selected_accessories = random_select_images(image_folder, 'h4', 1)
+        selected_tops = random_select_images(image_folder, f'{letter}1', 1)
+        selected_bottoms = random_select_images(image_folder, f'{letter}2', 1)
+        selected_shoes = random_select_images(image_folder, f'{letter}3', 1)
+        selected_accessories = random_select_images(image_folder, f'{letter}4', 1)
 
         selected_images = selected_tops + selected_bottoms + selected_shoes + selected_accessories
 
@@ -87,7 +71,7 @@ def main():
             if img is None:
                 raise ValueError(f"Failed to load image: {img_path}")
             img_smoothed = smooth_edges(img)
-            img_paperized = apply_paper_texture(img_smoothed, 'backcode/paper_texture.jpg', alpha=0.5)  # Adjust alpha
+            img_paperized = apply_paper_texture(img_smoothed, 'backcode/paper_texture.jpg', alpha=0.2)  # Adjusted alpha
             img_enhanced = enhance_colors(img_paperized, contrast=1.5, saturation=1.5)  # Adjust contrast and saturation
             save_path = os.path.join(save_folder, img_name)
             if not cv2.imwrite(save_path, img_enhanced):
@@ -96,5 +80,6 @@ def main():
     except Exception as e:
         print("An error occurred:", e)
 
+letter = 'o'
 if __name__ == '__main__':
     main()
