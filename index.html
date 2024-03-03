@@ -37,6 +37,21 @@
             padding-bottom: 50px;
         }
 
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px; /* Add margin to create space between banner and sections */
+        }
+
+        .left-column {
+            width: calc(50% - 20px);
+        }
+
+        .right-column {
+            width: calc(50% - 20px);
+        }
+
         section {
             background-size: contain;
             height: 50vh; /* Set section height to 50% of the viewport height */
@@ -55,43 +70,16 @@
         .left-section {
             background: #D7647C; /* Add your image URL here */
             background-size: contain;
-            position: absolute;
-            left: 0;
             height: 70vh;
-            overflow: hidden;
-            display: flex; /* Use flexbox for alignment */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-            width: calc(50% - 20px);
         }
 
         .right-section {
-    background: url('taped.png') center center no-repeat;
-    background-size: contain;
-    position: absolute;
-    right: 0; /* Align to the right edge of the viewport */
-    height: 50vh;
-    width: calc(50% - 20px); /* Adjust width to fit the right side */
-    overflow: hidden;
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack sections vertically */
-    align-items: flex-start; /* Align items to the start (left) */
-    justify-content: flex-start; /* Align content to the start (left) */
-    top: 0; /* Align to the top of the container */
-    padding-bottom: 50px;
-}
-
-
-/* Adjust the positioning of each section */
-#about, #services, #contact {
-    width: 100%; /* Set width to 100% */
+            background: url('taped.png') center center no-repeat;
+            background-size: contain;
         }
-
-
 
         main {
             position: relative; /* Needed for absolute positioning of sections */
-            margin-top: 40px; /* Add margin to create space between banner and sections */
         }
 
         /* Define handwriting animation */
@@ -128,12 +116,22 @@
             padding-top: 20px; /* Add padding */
             width: 100%; /* Full width */
             position: fixed; /* Fixed position */
-            bottom: 0; /* Align to the bottom */
+            bottom: -50px; /* Initially hidden below the viewport */
             left: 0;
             right: 0;
+            transition: bottom 0.3s ease; /* Smooth transition effect */
         }
 
+        /* Show the footer when user scrolls to the bottom */
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
 
+        body.loaded footer {
+            bottom: 0;
+        }
     </style>
     <script>
         // Add a class to the body when the page is loaded
@@ -152,35 +150,50 @@
         </header>
 
         <main>
-            <div class="left-section">
-                <section id="home">
-                    <h2>Welcome to Our Website</h2>
-                    <p>This is the homepage content.</p>
-                </section>
+            <div class="columns">
+                <div class="left-column">
+                    <section id="home" class="left-section">
+                        <h2>Welcome to Our Website</h2>
+                        <p>This is the homepage content.</p>
+                    </section>
+                </div>
+                <div class="right-column">
+                    <section id="about" class="right-section">
+                        <h2>About Us</h2>
+                        <p>About us content goes here.</p>
+                    </section>
+                    <section id="services" class="right-section">
+                        <h2>Our Services</h2>
+                        <p>Details about services offered.</p>
+                    </section>
+                    <section id="contact" class="right-section">
+                        <h2>Contact Us</h2>
+                        <p>Contact information and form.</p>
+                    </section>
+                </div>
             </div>
-
-<div>
-    <section id="about" class="right-section">
-        <h2>About Us</h2>
-        <p>About us content goes here.</p>
-    </section>
-
-    <section id="services" class="right-section">
-        <h2>Our Services</h2>
-        <p>Details about services offered.</p>
-    </section>
-
-    <section id="contact" class="right-section"> <!-- Corrected the class attribute here -->
-        <h2>Contact Us</h2>
-        <p>Contact information and form.</p>
-    </section>
-</div>
-
         </main>
 
         <footer>
             <p>&copy; 2024 Your Website. All rights reserved.</p>
         </footer>
     </div>
+
+    <!-- Script to toggle footer visibility on scroll -->
+    <script>
+        window.addEventListener('scroll', function() {
+            var footer = document.querySelector('footer');
+            var scrollPosition = window.scrollY;
+            var windowSize = window.innerHeight;
+            var bodyHeight = document.body.offsetHeight;
+            var footerPosition = bodyHeight - windowSize;
+            if (scrollPosition >= footerPosition) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
+
