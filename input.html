@@ -170,14 +170,11 @@
             document.body.classList.add('loaded');
         });
         function selectOption(option) {
-            document.getElementById("selectedOption").textContent = option;
-        }
-        function selectOption(option) {
             // Write the selected option to a CSV file
             const fs = require('fs');
             const selectedStyle = option; // Assuming option is the style identifier
 
-            fs.appendFile('selected_styles.csv', selectedStyle + '\n', (err) => {
+            fs.appendFile('data.csv', selectedStyle + '\n', (err) => {
                 if (err) {
                     console.error('Error writing to CSV file:', err);
                     return;
