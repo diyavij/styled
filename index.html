@@ -36,7 +36,6 @@
 
 
         section {
-    padding-top: 20px;
     background: url('67.png') center center no-repeat; /* Add your image URL here */
     background-size: cover;
     height: 20vh; /* Set section height to 20% of the viewport height */
@@ -45,8 +44,13 @@
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    padding-bottom: 20px; /* Add padding to create space between sections */
         }
+
+    /* Add margin to create space between sections */
+        section + section {
+    margin-top: 20px; /* Adjust this value as needed */
+        }
+
 
 
 
