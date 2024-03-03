@@ -1,0 +1,257 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled.</title>
+    
+    <style>
+        body {
+            font-family: Impact, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #EDC0C0; /* pink */
+        }
+
+        .container {
+            max-width: 100%; /* Set maximum width to 100% of viewport */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 0 20px; /* Add some padding to the sides */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            position: relative; /* Set position to relative */
+            min-height: 100vh; /* Set minimum height to viewport height */
+        }
+
+        .banner {
+            background: url('banner.jpg') center bottom no-repeat; /* Add your image URL here */
+            background-size: cover;
+            height: 50vh; /* Set banner height to 50% of the viewport height */
+            position: relative; /* Set position to relative for proper positioning of the banner */
+            overflow: hidden; /* Hide overflow */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            color: #4F3115; /* Set title color */
+            font-size: 10vw; /* Set title size relative to the viewport width */
+            position: relative; /* Set position to relative */
+            z-index: 1; /* Ensure the text is in front of the image */
+            padding-bottom: 50px;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px; /* Add margin to create space between banner and sections */
+        }
+
+        .left-column {
+            width: calc(50% - 20px);
+        }
+
+        .right-column {
+            width: calc(50% - 20px);
+        }
+
+        section {
+            background: #D7647C;
+            background-size: contain;
+            height: 50vh; /* Set section height to 50% of the viewport height */
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack text elements vertically */
+        }
+
+        /* Add margin to create space between sections */
+        section + section {
+            margin-top: 40px; /* Adjust this value as needed */
+        }
+
+        
+
+
+        main {
+            position: relative; /* Needed for absolute positioning of sections */
+        }
+
+        /* Define handwriting animation */
+        @keyframes handwriting {
+            from {
+                transform: translateX(-20px) rotate(-3deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply handwriting animation to the title */
+        #website-title {
+            font-size: 20vw;
+            position: relative; /* Set position to relative for z-index to work */
+            animation: handwriting 1s ease-in-out forwards; /* Apply handwriting animation */
+        }
+
+        /* Show the title when the page is loaded */
+        body.loaded #website-title {
+            display: inline-block; /* Show the title */
+        }
+
+        /* Increase the size of the buttons */
+        button {
+            padding: 10px 20px; /* Adjust padding to increase button size */
+            font-size: 16px; /* Increase font size for better readability */
+            font-family: impact, sans-serif;
+        }
+
+
+        h2, h3 {
+            color: #4F3115; /* Set title color */
+            text-align: center; /* Center align text */
+        }
+
+        p {
+            margin-top: 10px; /* Add top margin */
+            text-align: center; /* Center align text */
+            font-size: 15px
+        }
+        ul {
+              list-style-type: none;
+              padding: 0;
+        }
+
+        li {
+              margin-bottom: 8px;
+        }
+
+        a {
+              color: #154360; /* Darker navy blue for links */
+              text-decoration: none;
+        }
+
+              a:hover {
+              text-decoration: underline;
+        }
+
+
+        footer {
+            text-align: center;
+            background-color: #D7647C; /* dark pink */
+            padding-top: 20px; /* Add padding */
+            width: 100%; /* Full width */
+            position: fixed; /* Fixed position */
+            bottom: -50px; /* Initially hidden below the viewport */
+            left: 0;
+            right: 0;
+            transition: bottom 0.3s ease; /* Smooth transition effect */
+        }
+        
+
+
+
+        /* Show the footer when user scrolls to the bottom */
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        body.loaded footer {
+            bottom: 0;
+        }
+    </style>
+    <script>
+        // Add a class to the body when the page is loaded
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+        function selectOption(option) {
+        // Write the selected option to a CSV file
+        const selectedStyle = option; // Assuming option is the style identifier
+
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Define the URL to send the request to
+        var url = '/store-data';
+
+        // Prepare the data to be sent
+        var data = 'option=' + encodeURIComponent(selectedStyle);
+
+        // Open a POST request to the server
+        xhr.open('POST', url, true);
+
+        // Set the Content-Type header for the request
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        // Send the request with the data
+        xhr.send(data);
+
+        // Open a new page in the same tab
+        window.open('https://Sofkruse.github.io/Athena-Hacks-2024/output.html', '_self');
+    }
+
+    // Add click event listeners to the buttons
+    document.querySelectorAll('#options button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            selectOption(button.textContent); // Pass the button text (style) as the selected option
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="banner">
+                <h1 id="website-title">Styled.</h1>
+                <div class="banner-image"></div> <!-- Image div -->
+            </div>
+        </header>
+
+        <main>
+    <section id="questions">
+        <h2>What style are you feeling today?</h2>
+        <div id="options">
+            <button onclick="selectOption('s')">Skater</button>
+            <button onclick="selectOption('g')">Grunge</button>
+            <button onclick="selectOption('p')">Preppy</button>
+            <button onclick="selectOption('r')">Artsy</button>
+            <button onclick="selectOption('c')">Coquette</button>
+            <button onclick="selectOption('h')">Hippie</button>
+            <button onclick="selectOption('o')">Goth</button>
+            <button onclick="selectOption('a')">Athletic</button>
+        </div>
+        <p>Select your style!<span id="selectedOption"></span></p>
+    </section>
+</main>
+
+
+        <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Script to toggle footer visibility on scroll -->
+<script>
+    window.addEventListener('scroll', function() {
+        var footer = document.querySelector('footer');
+        var scrollPosition = window.scrollY;
+        var windowSize = window.innerHeight;
+        var bodyHeight = document.body.offsetHeight;
+        var footerPosition = bodyHeight - windowSize;
+        if (scrollPosition >= footerPosition) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+
+    });
+</script>
+
+</body>
+</html>
+

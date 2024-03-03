@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled.</title>
+    <style>
+        body {
+            font-family: Impact, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #EDC0C0; /* pink */
+        }
+
+        .container {
+            max-width: 100%; /* Set maximum width to 100% of viewport */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 0 20px; /* Add some padding to the sides */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            position: relative; /* Set position to relative */
+            min-height: 100vh; /* Set minimum height to viewport height */
+        }
+
+        .banner {
+            background: url('banner.jpg') center bottom no-repeat; /* Add your image URL here */
+            background-size: cover;
+            height: 50vh; /* Set banner height to 50% of the viewport height */
+            position: relative; /* Set position to relative for proper positioning of the banner */
+            overflow: hidden; /* Hide overflow */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            color: #4F3115; /* Set title color */
+            font-size: 10vw; /* Set title size relative to the viewport width */
+            position: relative; /* Set position to relative */
+            z-index: 1; /* Ensure the text is in front of the image */
+            padding-bottom: 50px;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px; /* Add margin to create space between banner and sections */
+        }
+
+        .left-column {
+            width: calc(50% - 20px);
+        }
+
+        .right-column {
+            width: calc(50% - 20px);
+        }
+
+        section {
+            background-size: contain;
+            height: 50vh; /* Set section height to 50% of the viewport height */
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack text elements vertically */
+        }
+
+        /* Add margin to create space between sections */
+        section + section {
+            margin-top: 40px; /* Adjust this value as needed */
+        }
+
+        .left-section {
+            background: #D7647C; /* Add your image URL here */
+            background-size: contain;
+            height: 30vh;
+        }
+        .contact-section {
+            background: #D7647C; /* Add your image URL here */
+            background-size: contain;
+            height: 100vh;
+        }
+
+        .right-section {
+            background: url('taped.png') center center no-repeat;
+            background-size: 120%; /* Increase the size of the background image */
+            /* Other styles... */
+        }
+
+
+        main {
+            position: relative; /* Needed for absolute positioning of sections */
+        }
+
+        /* Define handwriting animation */
+        @keyframes handwriting {
+            from {
+                transform: translateX(-20px) rotate(-3deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply handwriting animation to the title */
+        #website-title {
+            font-size: 20vw;
+            position: relative; /* Set position to relative for z-index to work */
+            animation: handwriting 1s ease-in-out forwards; /* Apply handwriting animation */
+        }
+
+        /* Show the title when the page is loaded */
+        body.loaded #website-title {
+            display: inline-block; /* Show the title */
+        }
+
+        h2, h3 {
+            color: #4F3115; /* Set title color */
+            text-align: center; /* Center align text */
+        }
+
+        p {
+            margin-top: 10px; /* Add top margin */
+            text-align: center; /* Center align text */
+            font-size: 14px
+        }
+        ul {
+              list-style-type: none;
+              padding: 0;
+        }
+
+        li {
+              margin-bottom: 8px;
+        }
+
+        a {
+              color: #154360; /* Darker navy blue for links */
+              text-decoration: none;
+        }
+
+              a:hover {
+              text-decoration: underline;
+        }
+
+
+        footer {
+            text-align: center;
+            background-color: #D7647C; /* dark pink */
+            padding-top: 20px; /* Add padding */
+            width: 100%; /* Full width */
+            position: fixed; /* Fixed position */
+            bottom: -50px; /* Initially hidden below the viewport */
+            left: 0;
+            right: 0;
+            transition: bottom 0.3s ease; /* Smooth transition effect */
+
+            
+        .contact-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.badge-container {
+    display: inline-block; /* Display badges side by side */
+}
+
+/* Adjust the size and layout of LinkedIn badges */
+.badge-base {
+    width: 0.5in; /* Set the width of each badge */
+    height: 0.5in; /* Set the height of each badge */
+    margin-right: 10px; /* Add some space between badges */
+}
+
+
+
+
+        /* Show the footer when user scrolls to the bottom */
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        body.loaded footer {
+            bottom: 0;
+        }
+    </style>
+    <script>
+        // Add a class to the body when the page is loaded
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="banner">
+                <h1 id="website-title">Styled.</h1>
+                <div class="banner-image"></div> <!-- Image div -->
+            </div>
+        </header>
+
+        <main>
+    <div class="columns">
+        <div class="left-column">
+            <section id="home" class="left-section">
+                <h2>Welcome to Our Website</h2>
+                <p>This is the homepage content.</p>
+            </section>
+            <section id="output" class="left-section">
+                <h2>Let's pick an outfit!</h2>
+                <p>Click the button below to find your fit</p>
+                <button onclick="window.location.href='https://Sofkruse.github.io/Athena-Hacks-2024/input.html';">Your Style?</button>
+            </section>
+            <section id="contact" class="contact-section">
+                <h3>Contact Us</h3>
+                <div class="contact-content">
+                    <div class="badge-container">
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="small" data-theme="light" data-type="VERTICAL" data-vanity="sofia-kruse-331510262" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/sofia-kruse-331510262?trk=profile-badge">Sofia Kruse</a></div>
+                    </div>
+                    <div class="badge-container">
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="small" data-theme="light" data-type="VERTICAL" data-vanity="diya-vij-916a30167" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/diya-vij-916a30167?trk=profile-badge">Diya Vij</a></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="right-column">
+            <section id="about" class="right-section">
+                <h3>Here's the thing,</h3>
+                <p>Every girl likes to feel her best. That's where we come in.</p>
+            </section>
+            <section id="services" class="right-section">
+                <h3>Don't worry your pretty head</h3>
+                <p>Planning an outfit in a quick situation can be difficult...good thing we're here to help!</p>
+                <p>Look to the left to find your perfect fit! Just let us know your style.</p>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+        <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Script to toggle footer visibility on scroll -->
+<script>
+    window.addEventListener('scroll', function() {
+        var footer = document.querySelector('footer');
+        var scrollPosition = window.scrollY;
+        var windowSize = window.innerHeight;
+        var bodyHeight = document.body.offsetHeight;
+        var footerPosition = bodyHeight - windowSize;
+        if (scrollPosition >= footerPosition) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+
+    });
+</script>
+
+</body>
+</html>
+
