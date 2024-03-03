@@ -36,14 +36,16 @@
         }
 
         section {
+            background-size: contain;
             height: 50vh; /* Set section height to 50% of the viewport height */
             position: relative;
             overflow: hidden;
             display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
-            right: 0;
         }
 
+        /* Add margin to create space between sections */
         section + section {
             margin-top: 40px; /* Adjust this value as needed */
         }
@@ -58,26 +60,23 @@
             display: flex; /* Use flexbox for alignment */
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
-            width: 50%; /* Take 50% of the container width */
         }
 
         .right-section {
-            background: url('taped.png') center center no-repeat; /* Add your image URL here */
-            background-size: contain;
             position: absolute;
             right: 0;
-            height: 90vh;
+            height: 50vh;
             overflow: hidden;
             display: flex; /* Use flexbox for alignment */
-            justify-content: center; /* Center content horizontally */
+            flex-direction: column; /* Stack sections vertically */
             align-items: center; /* Center content vertically */
-            width: 50%; /* Take 50% of the container width */
+            justify-content: center; /* Center content horizontally */
+            top: 0; /* Align to the top of the container */
         }
 
         main {
-            position: relative; /* Needed for absolute positioning of .left-section */
-            margin-left: 100px; /* Adjust the margin to create space for the left section */
-            margin-right: 100px;
+            position: relative; /* Needed for absolute positioning of sections */
+            margin-top: 40px; /* Add margin to create space between banner and sections */
         }
 
         /* Define handwriting animation */
@@ -107,6 +106,11 @@
         h2 {
             color: #4F3115; /* brown  */
         }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+        }
     </style>
     <script>
         // Add a class to the body when the page is loaded
@@ -125,25 +129,29 @@
         </header>
 
         <main>
-            <section id="home" class="left-section">
-                <h2>Welcome to Our Website</h2>
-                <p>This is the homepage content.</p>
-            </section>
+            <div class="left-section">
+                <section id="home">
+                    <h2>Welcome to Our Website</h2>
+                    <p>This is the homepage content.</p>
+                </section>
+            </div>
 
-            <section id="about" class="right-section">
-                <h2>About Us</h2>
-                <p>About us content goes here.</p>
-            </section>
+            <div class="right-section">
+                <section id="about">
+                    <h2>About Us</h2>
+                    <p>About us content goes here.</p>
+                </section>
 
-            <section id="services" class="right-section">
-                <h2>Our Services</h2>
-                <p>Details about services offered.</p>
-            </section>
+                <section id="services">
+                    <h2>Our Services</h2>
+                    <p>Details about services offered.</p>
+                </section>
 
-            <section id="contact" class="right-section">
-                <h2>Contact Us</h2>
-                <p>Contact information and form.</p>
-            </section>
+                <section id="contact">
+                    <h2>Contact Us</h2>
+                    <p>Contact information and form.</p>
+                </section>
+            </div>
         </main>
 
         <footer>
@@ -152,4 +160,3 @@
     </div>
 </body>
 </html>
-
