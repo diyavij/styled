@@ -180,20 +180,21 @@
     </div>
 
     <!-- Script to toggle footer visibility on scroll -->
-    <script>
-        window.addEventListener('scroll', function() {
-            var footer = document.querySelector('footer');
-            var scrollPosition = window.scrollY;
-            var windowSize = window.innerHeight;
-            var bodyHeight = document.body.offsetHeight;
-            var footerPosition = bodyHeight - windowSize;
-            if (scrollPosition >= footerPosition) {
-                footer.classList.add('visible');
-            } else {
-                footer.classList.remove('visible');
-            }
-        });
-    </script>
+<script>
+    window.addEventListener('scroll', function() {
+        var footer = document.querySelector('footer');
+        var scrollPosition = window.scrollY;
+        var windowSize = window.innerHeight;
+        var bodyHeight = document.body.offsetHeight;
+        var footerPosition = bodyHeight - windowSize;
+        if (scrollPosition >= footerPosition) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+    });
+</script>
+
 </body>
 </html>
 
