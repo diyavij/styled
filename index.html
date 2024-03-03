@@ -20,59 +20,65 @@
         }
 
         .banner {
-    background: url('banner.jpg') center bottom no-repeat; /* Add your image URL here */
-    background-size: cover;
-    height: 50vh; /* Set banner height to 50% of the viewport height */
-    position: relative; /* Set position to relative for proper positioning of the banner */
-    overflow: hidden; /* Hide overflow */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    color: #0D0005; /* Set title color */
-    font-size: 10vw; /* Set title size relative to the viewport width */
-    position: relative; /* Set position to relative */
-    z-index: 1; /* Ensure the text is in front of the image */
-    padding-bottom: 50px;
+            background: url('banner.jpg') center bottom no-repeat; /* Add your image URL here */
+            background-size: cover;
+            height: 50vh; /* Set banner height to 50% of the viewport height */
+            position: relative; /* Set position to relative for proper positioning of the banner */
+            overflow: hidden; /* Hide overflow */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            color: #0D0005; /* Set title color */
+            font-size: 10vw; /* Set title size relative to the viewport width */
+            position: relative; /* Set position to relative */
+            z-index: 1; /* Ensure the text is in front of the image */
+            padding-bottom: 50px;
         }
-
 
         section {
-    background: url('taped.png') center center no-repeat; /* Add your image URL here */
-    background-size: contain;
-    height: 50vh; /* Set section height to 50% of the viewport height */
-    position: relative;
-    overflow: hidden;
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    right: 0;
+            height: 50vh; /* Set section height to 50% of the viewport height */
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center content vertically */
+            right: 0;
         }
 
-    /* Add margin to create space between sections */
         section + section {
-    margin-top: 40px; /* Adjust this value as needed */
+            margin-top: 40px; /* Adjust this value as needed */
         }
 
         .left-section {
-    background: url('67.png') center center no-repeat; /* Add your image URL here */
-    background-size: contain;
-    position: absolute;
-    left: 0;
-    height: 90vh;
-    overflow: hidden;
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+            background: url('67.png') center center no-repeat; /* Add your image URL here */
+            background-size: contain;
+            position: absolute;
+            left: 0;
+            height: 90vh;
+            overflow: hidden;
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            width: 50%; /* Take 50% of the container width */
+        }
+
+        .right-section {
+            background: url('taped.png') center center no-repeat; /* Add your image URL here */
+            background-size: contain;
+            position: absolute;
+            right: 0;
+            height: 90vh;
+            overflow: hidden;
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            width: 50%; /* Take 50% of the container width */
         }
 
         main {
-    position: relative; /* Needed for absolute positioning of .left-section */
-    margin-left: 100px; /* Adjust the margin to create space for the left section */
-    margin-right: 100px;
+            position: relative; /* Needed for absolute positioning of .left-section */
+            margin-left: 100px; /* Adjust the margin to create space for the left section */
+            margin-right: 100px;
         }
-
-
-
 
         /* Define handwriting animation */
         @keyframes handwriting {
@@ -99,7 +105,7 @@
         }
 
         h2 {
-      color: #4F3115; /* brown  */
+            color: #4F3115; /* brown  */
         }
     </style>
     <script>
@@ -124,17 +130,17 @@
                 <p>This is the homepage content.</p>
             </section>
 
-            <section id="about">
+            <section id="about" class="right-section">
                 <h2>About Us</h2>
                 <p>About us content goes here.</p>
             </section>
 
-            <section id="services">
+            <section id="services" class="right-section">
                 <h2>Our Services</h2>
                 <p>Details about services offered.</p>
             </section>
 
-            <section id="contact">
+            <section id="contact" class="right-section">
                 <h2>Contact Us</h2>
                 <p>Contact information and form.</p>
             </section>
@@ -146,3 +152,4 @@
     </div>
 </body>
 </html>
+
