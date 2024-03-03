@@ -53,7 +53,7 @@
         }
 
         .left-section {
-            background: url('longtape.jpg') center center no-repeat; /* Add your image URL here */
+            background: url('leftside.psd') center center no-repeat; /* Add your image URL here */
             background-size: contain;
             position: absolute;
             left: 0;
@@ -62,6 +62,7 @@
             display: flex; /* Use flexbox for alignment */
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
+            width: calc(50% - 20px);
         }
 
         .right-section {
@@ -70,6 +71,7 @@
             position: absolute;
             right: 0;
             height: 50vh;
+            width: calc(50% - 20px); /* Adjust width to fit the right side */
             overflow: hidden;
             display: flex; /* Use flexbox for alignment */
             flex-direction: column; /* Stack sections vertically */
@@ -81,9 +83,9 @@
 
 /* Adjust the positioning of each section */
 #about, #services, #contact {
-    position: relative; /* Set position to relative */
     width: 100%; /* Set width to 100% */
-}
+        }
+
 
 
         main {
