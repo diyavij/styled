@@ -170,21 +170,37 @@
             document.body.classList.add('loaded');
         });
         function selectOption(option) {
-            // Write the selected option to a CSV file
-            const fs = require('fs');
-            const selectedStyle = option; // Assuming option is the style identifier
+        // Write the selected option to a CSV file
+        const selectedStyle = option; // Assuming option is the style identifier
 
-            fs.appendFile('data.csv', selectedStyle + '\n', (err) => {
-                if (err) {
-                    console.error('Error writing to CSV file:', err);
-                    return;
-                }
-                console.log('Selected style written to CSV file:', selectedStyle);
-            });
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
 
-            // Open a new page in the same tab
-            window.open('https://Sofkruse.github.io/Athena-Hacks-2024/output.html', '_self');
-        }
+        // Define the URL to send the request to
+        var url = '/store-data';
+
+        // Prepare the data to be sent
+        var data = 'option=' + encodeURIComponent(selectedStyle);
+
+        // Open a POST request to the server
+        xhr.open('POST', url, true);
+
+        // Set the Content-Type header for the request
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        // Send the request with the data
+        xhr.send(data);
+
+        // Open a new page in the same tab
+        window.open('https://Sofkruse.github.io/Athena-Hacks-2024/output.html', '_self');
+    }
+
+    // Add click event listeners to the buttons
+    document.querySelectorAll('#options button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            selectOption(button.textContent); // Pass the button text (style) as the selected option
+        });
+    });
     </script>
 </head>
 <body>
